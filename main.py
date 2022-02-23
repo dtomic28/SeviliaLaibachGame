@@ -40,7 +40,10 @@ def generateWorld():
                 rect_sez.append(Rect(x*32,y*32,32,32))
             x+=1
         y+=1
+
     return(rect_sez,block_sez)
+
+
 
 map_sez=world()
 
@@ -64,6 +67,7 @@ cameraMVX=0
 frame=0
 rectBlock_sez=generateWorld()
 
+
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
     return(img)
@@ -71,6 +75,7 @@ def imageLoad(frame,animation):
 def main():
     global cameraMVX, frame
     while(True):
+
         for block in rectBlock_sez[1]:
             spaceCounter=0
             x=""
@@ -86,6 +91,7 @@ def main():
                     y+=mestoInString
             if(block[-1]=="1"):
                 screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
+
 
         frame+=1
         cameraMVX= Player.x-50
