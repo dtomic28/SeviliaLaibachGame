@@ -4,7 +4,7 @@ from pygame.locals import *
 clock = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption("Game with libach")
-
+#edaoidnowa
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
 screen2 = pygame.Surface((640,360))
 
