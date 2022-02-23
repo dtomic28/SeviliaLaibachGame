@@ -8,7 +8,7 @@ pygame.display.set_caption("Game with libach")
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
 screen2 = pygame.Surface((640,360))
 
-mainCharacter_png = pygame.image.load("images/mainCharacter.png")
+mainCharacter_png = pygame.image.load("images/mainCharacter.gif")
 block_png = pygame.image.load("images/block.png")
 
 def world():
