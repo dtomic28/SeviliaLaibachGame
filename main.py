@@ -21,7 +21,7 @@ def world():
         map_sez.append(list(vrstica))
     return (map_sez)
 
-#dwad
+#dwadorhguerh
 def collideTest(Player,rectList):
     for hit in rectList:
         if(hit.colliderect(Player)):
