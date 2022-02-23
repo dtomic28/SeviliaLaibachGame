@@ -42,8 +42,6 @@ def generateWorld():
 
     return(rect_sez,block_sez)
 
-<<<<<<< Updated upstream
-=======
 def bubbleSort(Sez):
     for i in range(0,len(Sez),1):
         for j in range(i,len(Sez),1):
@@ -53,7 +51,6 @@ def bubbleSort(Sez):
                 Sez[j]=replaceVaule
     return(Sez)
 
->>>>>>> Stashed changes
 
 
 map_sez=world()
