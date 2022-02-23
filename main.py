@@ -43,9 +43,6 @@ def generateWorld():
         y+=1
     return(rect_sez)
 
-
-
-
 map_sez=world()
 
 class mainCharacter:
@@ -64,9 +61,17 @@ class obsticale:
 Player = mainCharacter(True,32,33,0,0)
 cameraMVX=0
 
+#ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
+frame=0
+
+def imageLoad(frame,animation):
+    img=pygame.image.load(animation[frame])
+    return(img)
+
 def main():
-    global cameraMVX
+    global cameraMVX, frame
     while(True):
+        frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,32,32)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
