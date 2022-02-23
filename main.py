@@ -65,9 +65,12 @@ Player = mainCharacter(True,32,33,0,0)
 cameraMVX=0
 
 ozadjeAnimation=["images/pravilno0.png","images/pravilna1.png","images/pravilno2.png","images/pravilno3.png","images/pravilno4.png","images/pravilno5.png","images/pravilno6.png"]
+playerAnimation=["images/raketa0.png","images/raketa1.png","images/raketa2.png"]
 frame=0
 BackgroundTimer=0
 BackgroundFrame=0
+PlayerFrame=0
+PlayerTimer=0
 rectBlock_sez=generateWorld()
 
 
@@ -76,7 +79,7 @@ def imageLoad(frame,animation):
     return(img)
 
 def main():
-    global cameraMVX, frame,BackgroundFrame,BackgroundTimer
+    global cameraMVX, frame,BackgroundFrame,BackgroundTimer,PlayerFrame,PlayerTimer
     while(True):
         BackgroundTimer=(BackgroundTimer+1)%5
         if(BackgroundTimer==4):
@@ -119,7 +122,7 @@ def main():
         if(Player.state==False):
             Player.SpeedY=5
         else:
-            Player.SpeedY=-5
+            Player.SpeedY=-0
         Player.y+=Player.SpeedY
         Player.x+=1
 
@@ -128,7 +131,10 @@ def main():
             Player.x=32
             Player.y=320
             Player.state=True
-        screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
+        PlayerTimer=(PlayerTimer+1)%5
+        if(PlayerTimer==4):
+            PlayerFrame=(PlayerFrame+1)%3
+        screen2.blit(imageLoad(PlayerFrame,playerAnimation),(Player.x-cameraMVX,Player.y))
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
 
