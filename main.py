@@ -1,4 +1,5 @@
 
+from webbrowser import BackgroundBrowser
 import pygame, pygame_menu,sys, random
 from pygame.locals import *
 clock = pygame.time.Clock()
@@ -6,7 +7,7 @@ pygame.init()
 pygame.display.set_caption("Game with libach")
 
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
-screen2 = pygame.Surface((640,360))
+screen2 = pygame.Surface((320,180))
 
 mainCharacter_png = pygame.image.load("images/mainCharacter.png")
 block_png = pygame.image.load("images/block.png")
@@ -63,8 +64,10 @@ class obsticale:
 Player = mainCharacter(True,32,33,0,0)
 cameraMVX=0
 
-#ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
+ozadjeAnimation=["images/pravilno0.png","images/pravilna1.png","images/pravilno2.png","images/pravilno3.png","images/pravilno4.png","images/pravilno5.png","images/pravilno6.png"]
 frame=0
+BackgroundTimer=0
+BackgroundFrame=0
 rectBlock_sez=generateWorld()
 
 
@@ -73,9 +76,13 @@ def imageLoad(frame,animation):
     return(img)
 
 def main():
-    global cameraMVX, frame
+    global cameraMVX, frame,BackgroundFrame,BackgroundTimer
     while(True):
-
+        BackgroundTimer=(BackgroundTimer+1)%5
+        if(BackgroundTimer==4):
+            BackgroundFrame=(BackgroundFrame+1)%7
+        
+        screen2.blit(imageLoad(BackgroundFrame,ozadjeAnimation),(0,0))
         for block in rectBlock_sez[1]:
             spaceCounter=0
             x=""
@@ -96,8 +103,6 @@ def main():
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,32,32)
-        screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
-        screen2.fill([0,255,255])
 
         for keyPressed in pygame.event.get():
             if(keyPressed.type == KEYUP):
@@ -124,6 +129,9 @@ def main():
             Player.y=320
             Player.state=True
         screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
+        screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
+        screen2.fill([0,255,255])
+
         pygame.display.update()
         clock.tick(60)
 
