@@ -29,19 +29,21 @@ def collideTest(Player,rectList):
 
 def generateWorld():
     rect_sez=[]
+    block_sez=[]
     y=0
     for vrstica in map_sez:
         x=0
         for block in vrstica:
             if(block=="1"):
                 screen2.blit(block_png,(x*32-cameraMVX,y*32))
+                block_sez.append(str(x)+" "+str(y)+" "+str(block))
                 rect_sez.append(Rect(x*32,y*32,32,32))
-                if(x*32>Player.x+640):
-                    break
-
             x+=1
         y+=1
-    return(rect_sez)
+
+    return(rect_sez,block_sez)
+
+
 
 map_sez=world()
 
@@ -63,6 +65,8 @@ cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
+rectBlock_sez=generateWorld()
+
 
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
@@ -71,12 +75,29 @@ def imageLoad(frame,animation):
 def main():
     global cameraMVX, frame
     while(True):
+
+        for block in rectBlock_sez[1]:
+            spaceCounter=0
+            x=""
+            y=""
+            for mestoInString in block:
+                if(mestoInString == " "):
+                    spaceCounter+=1
+                    if(spaceCounter==2):
+                        break
+                if(spaceCounter==0):
+                    x+=mestoInString
+                if(spaceCounter==1):
+                    y+=mestoInString
+            if(block[-1]=="1"):
+                screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
+
+
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,32,32)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
-        rect_sez=generateWorld()
 
         for keyPressed in pygame.event.get():
             if(keyPressed.type == KEYUP):
@@ -98,7 +119,7 @@ def main():
         Player.x+=1
 
 
-        if(collideTest(Player_rect,rect_sez)==True or Player.y>328):
+        if(collideTest(Player_rect,rectBlock_sez[0])==True or Player.y>328):
             Player.x=32
             Player.y=320
             Player.state=True
