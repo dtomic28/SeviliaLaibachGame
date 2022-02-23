@@ -35,7 +35,6 @@ def generateWorld():
         x=0
         for block in vrstica:
             if(block=="1"):
-                screen2.blit(block_png,(x*32-cameraMVX,y*32))
                 block_sez.append(str(x)+" "+str(y)+" "+str(block))
                 rect_sez.append(Rect(x*32,y*32,32,32))
             x+=1
@@ -43,6 +42,18 @@ def generateWorld():
 
     return(rect_sez,block_sez)
 
+<<<<<<< Updated upstream
+=======
+def bubbleSort(Sez):
+    for i in range(0,len(Sez),1):
+        for j in range(i,len(Sez),1):
+            if(j<i):
+                replaceVaule=Sez[i]
+                Sez[i]=Sez[j]
+                Sez[j]=replaceVaule
+    return(Sez)
+
+>>>>>>> Stashed changes
 
 
 map_sez=world()
@@ -66,6 +77,8 @@ cameraMVX=0
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
 rectBlock_sez=generateWorld()
+rectBlock_sez=[rectBlock_sez[0],bubbleSort(rectBlock_sez[1])]
+print(rectBlock_sez[1])
 
 
 def imageLoad(frame,animation):
