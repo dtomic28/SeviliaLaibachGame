@@ -92,7 +92,7 @@ def main():
         Player.y+=Player.SpeedY
         Player.x+=1
 
-
+        
         if(collideTest(Player_rect,rect_sez)==True or Player.y>328):
             Player.x=32
             Player.y=320
