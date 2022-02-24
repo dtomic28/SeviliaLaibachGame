@@ -127,4 +127,24 @@ def main():
         pygame.display.update()
         clock.tick(60)
 
-main()
+
+def credits():
+    pass
+
+
+menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
+
+#menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "background.png") #odpremo sliko za temo glavnega menija
+menu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
+#menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
+menu_theme.widget_font = menu_font #nastavimo izbrani font
+menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
+
+menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
+menu.add.vertical_margin(100)
+menu.add.button('Play', main) #ustvarimo gumb za igranje same igre
+menu.add.button("How to play", credits)
+menu.add.button('Credits', credits) #ustvarimo gumb za shop
+menu.add.button('Quit', pygame_menu.events.EXIT) #in ustvarimo gumb za izhod
+
+menu.mainloop(screen1) #ustvarimo mainloop za glavni meni
