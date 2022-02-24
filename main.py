@@ -73,8 +73,6 @@ def imageLoad(frame,animation):
 def main():
     global cameraMVX, frame,frameRaketa
     while(True):
-<<<<<<< Updated upstream
-=======
         screen2.blit(ozadje_png,(0,0))
         frameRaketa=(frameRaketa+1)%2
         screen2.blit(imageLoad(frameRaketa,AnimacijaRakete),(Player.x-cameraMVX,Player.y))
@@ -95,7 +93,6 @@ def main():
                 screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
 
 
->>>>>>> Stashed changes
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,32,32)
