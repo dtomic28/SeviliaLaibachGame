@@ -3,8 +3,16 @@ import scipy
 import scipy.fftpack as fftpk
 import numpy as np
 from matplotlib import pyplot as plt
+<<<<<<< Updated upstream
 import pydub
 
+=======
+from pydub import AudioSegment
+from pydub.playback import play
+  
+
+wav_file = AudioSegment.from_file(file = "file.wav", format = "wav") 
+>>>>>>> Stashed changes
 
 s_rate, signal = wavfile.read(r"C:\Users\majar\Documents\GitHub\SeviliaLaibachGame\testSound.py\file.wav")
 FFT = signal
