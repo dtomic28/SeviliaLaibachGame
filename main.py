@@ -8,8 +8,8 @@ pygame.display.set_caption("Game with libach")
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
 screen2 = pygame.Surface((640,360))
 
-mainCharacter_png = pygame.image.load("images/mainCharacter.png")
-block_png = pygame.image.load("images/block.png")
+block_png = pygame.image.load("images/ovira.png")
+ozadje_png = pygame.image.load("images/ozadje.png")
 
 def world():
     datoteka = open("map/map0.txt")
@@ -62,6 +62,8 @@ Player = mainCharacter(True,32,33,0,0)
 cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
+AnimacijaRakete=["images/animacijaRakete0.png","images/animacijaRakete1.png"]
+frameRaketa=0
 frame=0
 
 def imageLoad(frame,animation):
@@ -69,8 +71,31 @@ def imageLoad(frame,animation):
     return(img)
 
 def main():
-    global cameraMVX, frame
+    global cameraMVX, frame,frameRaketa
     while(True):
+<<<<<<< Updated upstream
+=======
+        screen2.blit(ozadje_png,(0,0))
+        frameRaketa=(frameRaketa+1)%2
+        screen2.blit(imageLoad(frameRaketa,AnimacijaRakete),(Player.x-cameraMVX,Player.y))
+        for block in rectBlock_sez[1]:
+            spaceCounter=0
+            x=""
+            y=""
+            for mestoInString in block:
+                if(mestoInString == " "):
+                    spaceCounter+=1
+                    if(spaceCounter==2):
+                        break
+                if(spaceCounter==0):
+                    x+=mestoInString
+                if(spaceCounter==1):
+                    y+=mestoInString
+            if(block[-1]=="1"):
+                screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
+
+
+>>>>>>> Stashed changes
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,32,32)
@@ -102,7 +127,6 @@ def main():
             Player.x=32
             Player.y=320
             Player.state=True
-        screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
         pygame.display.update()
         clock.tick(60)
 
