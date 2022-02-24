@@ -11,6 +11,8 @@ screen2 = pygame.Surface((640,360))
 mainCharacter_png = pygame.image.load("images/mainCharacter.png")
 block_png = pygame.image.load("images/block.png")
 
+
+"""
 def world():
     datoteka = open("map/map0.txt")
     vsebina = datoteka.read()
@@ -20,13 +22,14 @@ def world():
     for vrstica in vsebina:
         map_sez.append(list(vrstica))
     return (map_sez)
+    """
 
 def collideTest(Player,rectList):
     for hit in rectList:
         if(hit.colliderect(Player)):
             return(True)
     return(False)
-
+"""
 def generateWorld():
     rect_sez=[]
     block_sez=[]
@@ -41,19 +44,33 @@ def generateWorld():
         y+=1
 
     return(rect_sez,block_sez)
+"""
 
+"""
 def bubbleSort(Sez):
     for i in range(0,len(Sez),1):
+        x1=""
+        xTest=0
+        while(Sez[i][xTest]!=" "):
+            x1+=Sez[i][xTest]
+            xTest+=1
         for j in range(i,len(Sez),1):
-            if(j<i):
+            x2=""
+            xTest2=0
+            while(Sez[j][xTest2]!=" "):
+                x2+=Sez[j][xTest2]
+                xTest2+=1
+            if(int(x1)>int(x2)):
                 replaceVaule=Sez[i]
                 Sez[i]=Sez[j]
                 Sez[j]=replaceVaule
     return(Sez)
 
+"""
 
-
+"""
 map_sez=world()
+"""
 
 class mainCharacter:
     def __init__(self,state,x,y,SpeedX,SpeedY):
@@ -73,10 +90,12 @@ cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
+"""
 rectBlock_sez=generateWorld()
 rectBlock_sez=[rectBlock_sez[0],bubbleSort(rectBlock_sez[1])]
 print(rectBlock_sez[1])
 
+"""
 
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
@@ -86,6 +105,7 @@ def main():
     global cameraMVX, frame
     while(True):
 
+        """
         for block in rectBlock_sez[1]:
             spaceCounter=0
             x=""
@@ -101,7 +121,7 @@ def main():
                     y+=mestoInString
             if(block[-1]=="1"):
                 screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
-
+        """
 
         frame+=1
         cameraMVX= Player.x-50
@@ -129,7 +149,7 @@ def main():
         Player.x+=1
 
 
-        if(collideTest(Player_rect,rectBlock_sez[0])==True or Player.y>328):
+        if(Player.y>328):
             Player.x=32
             Player.y=320
             Player.state=True
