@@ -134,14 +134,18 @@ def credits():
 
 menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
 
-#menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "background.png") #odpremo sliko za temo glavnega menija
+menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "laibach2.png") #odpremo sliko za temo glavnega menija
 menu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
-#menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
+menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
 menu_theme.widget_font = menu_font #nastavimo izbrani font
 menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
 
+btn1_background = pygame_menu.baseimage.BaseImage(image_path = "background.png")
+
+
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
-menu.add.vertical_margin(100)
+menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
+menu.add.vertical_margin(500)
 menu.add.button('Play', main) #ustvarimo gumb za igranje same igre
 menu.add.button("How to play", credits)
 menu.add.button('Credits', credits) #ustvarimo gumb za shop
