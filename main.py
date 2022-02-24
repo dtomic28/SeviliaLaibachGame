@@ -140,9 +140,6 @@ menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
 menu_theme.widget_font = menu_font #nastavimo izbrani font
 menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
 
-btn1_background = pygame_menu.baseimage.BaseImage(image_path = "background.png")
-
-
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
