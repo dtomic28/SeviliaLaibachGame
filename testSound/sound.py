@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 import soundfile as sf
 import pyloudnorm as pyln
 def soundCheck():
-    s_rate, signal = wavfile.read(r"C:\Users\majar\Documents\GitHub\SeviliaLaibachGame\testSound\file.wav")
+    s_rate, signal = wavfile.read(r"C:\Users\majar\Documents\GitHub\SeviliaLaibachGame\testSound\song1W.wav")
     FFT = signal
     freqs=fftpk.fftfreq(len(FFT),(1.0/s_rate))
     st=0
@@ -15,7 +15,7 @@ def soundCheck():
     min=0
     max=0
     SoundWaveSez=[]
-    for i in range(0,len(signal),s_rate//10):
+    for i in range(0,len(signal),s_rate//100):
         if(int(signal[i])>max):
             max=int(signal[i])
         if(int(signal[i])<min):
