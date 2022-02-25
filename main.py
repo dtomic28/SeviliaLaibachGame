@@ -1,6 +1,7 @@
 
 import pygame, pygame_menu,sys, random
 from pygame.locals import *
+from testSound.sound import soundCheck
 clock = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption("Game with libach")
@@ -10,7 +11,8 @@ screen2 = pygame.Surface((640,360))
 
 mainCharacter_png = pygame.image.load("images/mainCharacter.png")
 block_png = pygame.image.load("images/block.png")
-
+artifactSez=soundCheck()
+print(artifactSez)
 
 """
 def world():
