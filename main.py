@@ -131,6 +131,18 @@ def credits():
     pass
 
 
+def levels():
+    play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = menu_theme)
+
+    table = play_levels.add.table(font_size = 40)
+    table.default_cell_align = pygame_menu.locals.ALIGN_CENTER
+    table.default_cell_padding = 20
+    table.default_cell_border_color = (0,0,0,0)
+    table.add_row(["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"])
+    menu.add.vertical_margin(20) 
+    play_levels.add.button('Back', play_levels.disable)
+    play_levels.mainloop(screen1)
+
 menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
 
 menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "laibach2.png") #odpremo sliko za temo glavnega menija
@@ -138,11 +150,13 @@ menu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo,
 menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
 menu_theme.widget_font = menu_font #nastavimo izbrani font
 menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
+menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
-menu.add.button('Play', main) #ustvarimo gumb za igranje same igre
+menu.add.button('Play', levels) #ustvarimo gumb za igranje same igre
 menu.add.button("How to play", credits)
 menu.add.button('Credits', credits) #ustvarimo gumb za shop
 menu.add.button('Quit', pygame_menu.events.EXIT) #in ustvarimo gumb za izhod
