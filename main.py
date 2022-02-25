@@ -138,8 +138,24 @@ def levels():
     table.default_cell_align = pygame_menu.locals.ALIGN_CENTER
     table.default_cell_padding = 20
     table.default_cell_border_color = (0,0,0,0)
+  
+    image1 = menu.add.image('./images/menu/1.png')
+    image2 = menu.add.image('./images/menu/2.png')
+    image3 = menu.add.image('./images/menu/3.png')
+    image4 = menu.add.image('./images/menu/4.png')
+    image5 = menu.add.image('./images/menu/5.png')
+    image6 = menu.add.image('./images/menu/6.png')
+    
+    image1.scale(0.33, 0.33)
+    image2.scale(0.33, 0.33)
+    image3.scale(0.33, 0.33)
+    image4.scale(0.33, 0.33)
+    image5.scale(0.33, 0.33)
+    image6.scale(0.33, 0.33)
+
+    table.add_row([image1, image2, image3, image4, image5, image6])
     table.add_row(["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"])
-    menu.add.vertical_margin(20) 
+    menu.add.vertical_margin(100)  
     play_levels.add.button('Back', play_levels.disable)
     play_levels.mainloop(screen1)
 
