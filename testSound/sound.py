@@ -15,7 +15,7 @@ def soundCheck():
     min=0
     max=0
     SoundWaveSez=[]
-    for i in range(0,len(signal),s_rate//100):
+    for i in range(0,len(signal),s_rate//10):
         if(int(signal[i])>max):
             max=int(signal[i])
         if(int(signal[i])<min):
@@ -27,8 +27,12 @@ def soundCheck():
 
     SpawnObject=[]
     for i in SoundWaveSez:
-        SpawnObject.append(((i+abs(min))/(max+abs(min))*5)//1)
-    return(SpawnObject)
+        roundIt=((i+abs(min))/(max+abs(min))*5)
+        if(roundIt%1>0.5):
+            SpawnObject.append((roundIt+1)//1)
+        else:
+            SpawnObject.append(roundIt//1)
+    print(SpawnObject)
 
-if __name__ == "main":
-    soundCheck()
+
+soundCheck()
