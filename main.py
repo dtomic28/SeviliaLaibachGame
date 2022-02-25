@@ -1,4 +1,3 @@
-
 import pygame, pygame_menu,sys, random
 from pygame.locals import *
 clock = pygame.time.Clock()
