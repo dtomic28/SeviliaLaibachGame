@@ -5,6 +5,8 @@ clock = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption("Game with libach")
 
+fps=pygame.time.Clock()
+
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
 screen2 = pygame.Surface((640,360))
 
@@ -121,7 +123,7 @@ pygame.mixer.music.play(1)
 w, h = pygame.display.get_surface().get_size()
 
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps
     while(True):
         """
         for block in rectBlock_sez[1]:
@@ -210,6 +212,8 @@ def main():
             artifactFrame=0
         screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
         pygame.display.update()
-        clock.tick(60)
+        fps.tick(60)
+        print(fps.get_fps())
+        
 
 main()
