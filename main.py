@@ -134,28 +134,53 @@ def credits():
 def levels():
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = menu_theme)
 
+    """
     table = play_levels.add.table(font_size = 40)
     table.default_cell_align = pygame_menu.locals.ALIGN_CENTER
     table.default_cell_padding = 20
     table.default_cell_border_color = (0,0,0,0)
-  
-    image1 = menu.add.image('./images/menu/1.png')
-    image2 = menu.add.image('./images/menu/2.png')
-    image3 = menu.add.image('./images/menu/3.png')
-    image4 = menu.add.image('./images/menu/4.png')
-    image5 = menu.add.image('./images/menu/5.png')
-    image6 = menu.add.image('./images/menu/6.png')
-    
-    image1.scale(0.33, 0.33)
-    image2.scale(0.33, 0.33)
-    image3.scale(0.33, 0.33)
-    image4.scale(0.33, 0.33)
-    image5.scale(0.33, 0.33)
-    image6.scale(0.33, 0.33)
+    """
 
-    table.add_row([image1, image2, image3, image4, image5, image6])
-    table.add_row(["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"])
-    menu.add.vertical_margin(100)  
+    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
+    image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
+    image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3.png")
+    image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4.png")
+    image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5.png")
+    image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6.png")
+        
+    btn1 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 1', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn2 = play_levels.add.button(" ", main, background_color=image2).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 2', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn3 = play_levels.add.button(" ", main, background_color=image3).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 3', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn4 = play_levels.add.button(" ", main, background_color=image4).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 4', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn5 = play_levels.add.button(" ", main, background_color=image5).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 5', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn6 = play_levels.add.button(" ", main, background_color=image6).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 6', font_size=40)
+    play_levels.add.vertical_margin(20)
+    
+    #table.add_row([image1, image2, image3, image4, image5, image6])
+    #table.add_row([btn1, "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"])
+    play_levels.add.vertical_margin(100)  
     play_levels.add.button('Back', play_levels.disable)
     play_levels.mainloop(screen1)
 
@@ -167,7 +192,6 @@ menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
 menu_theme.widget_font = menu_font #nastavimo izbrani font
 menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
 menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
-
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
