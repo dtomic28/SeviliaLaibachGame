@@ -133,14 +133,6 @@ def credits():
 
 def levels():
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = menu_theme)
-
-    """
-    table = play_levels.add.table(font_size = 40)
-    table.default_cell_align = pygame_menu.locals.ALIGN_CENTER
-    table.default_cell_padding = 20
-    table.default_cell_border_color = (0,0,0,0)
-    """
-
     image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
     image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
     image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3.png")
@@ -178,8 +170,6 @@ def levels():
     play_levels.add.label('Level 6', font_size=40)
     play_levels.add.vertical_margin(20)
     
-    #table.add_row([image1, image2, image3, image4, image5, image6])
-    #table.add_row([btn1, "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"])
     play_levels.add.vertical_margin(100)  
     play_levels.add.button('Back', play_levels.disable)
     play_levels.mainloop(screen1)
