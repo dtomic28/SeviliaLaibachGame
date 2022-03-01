@@ -154,7 +154,7 @@ def main():
                     Player.SpeedY=0
             if(keyPressed.type == KEYDOWN):
                 if (keyPressed.key == K_ESCAPE):
-                    music1.pause()
+                    pygame.mixer.music.pause()
                     gameStop=True
                 if(keyPressed.key == K_w):
                     Player.state=True
@@ -189,7 +189,7 @@ def main():
 
 def playLevel(level: int):
     global gameStop
-    music1.unpause()
+    pygame.mixer.music.unpause()
     gameStop = False
     main()
 
