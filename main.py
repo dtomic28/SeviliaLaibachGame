@@ -68,7 +68,7 @@ cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
-
+gameStop=False
 
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
@@ -89,11 +89,11 @@ def buildingLoading(buildingHight,buildingType):
 
 music1 = pygame.mixer.Sound("sound/song1MP.mp3")
 pygame.mixer.music.load('sound/song1MP.mp3')
-pygame.mixer.music.play(1)
+startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez
-    while(True):
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez, startMusicTimer,gameStop
+    while(gameStop==False):
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,16,16)
@@ -154,8 +154,7 @@ def main():
                     Player.SpeedY=0
             if(keyPressed.type == KEYDOWN):
                 if (keyPressed.key == K_ESCAPE):
-                    pygame.quit()
-                    sys.exit()
+                    gameStop=True
                 if(keyPressed.key == K_w):
                     Player.state=True
                 if(keyPressed.key == K_s):
@@ -168,7 +167,7 @@ def main():
         Player.x+=1
 
 
-        if(Player.y>360 or collideTest(Player_rect,rectSez)==True):
+        if(Player.y>360 or collideTest(Player_rect,rectSez)==True or startMusicTimer==False):
             Player.x=32
             Player.y=320
             Player.state=True
@@ -177,6 +176,7 @@ def main():
             artifactFrame=0
             buildingSpawnTimer=0
             buildingSez=[]
+            startMusicTimer=True
             pygame.mixer.music.stop()
             pygame.mixer.music.play(1)
 
