@@ -117,7 +117,6 @@ def main():
         Player.y+=Player.SpeedY
         Player.x+=1
 
-
         if(collideTest(Player_rect,rectBlock_sez[0])==True or Player.y>328):
             Player.x=32
             Player.y=320
@@ -126,19 +125,23 @@ def main():
         pygame.display.update()
         clock.tick(60)
 
-
 def credits():
     pass
 
-
 def levels():
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = menu_theme)
+    #image0
     image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
     image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
     image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3.png")
     image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4.png")
     image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5.png")
     image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6.png")
+
+    btn0 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Tutorial level', font_size=40)
+    play_levels.add.vertical_margin(20)       
         
     btn1 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
@@ -172,6 +175,7 @@ def levels():
     
     play_levels.add.vertical_margin(100)  
     play_levels.add.button('Back', play_levels.disable)
+    play_levels.add.vertical_margin(100)
     play_levels.mainloop(screen1)
 
 menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
