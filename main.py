@@ -128,11 +128,26 @@ def main():
 def credits():
     pass
 
+def isLocked():
+    pass
+
+def exitMenu():
+    exit_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
+    exit_menu.add.label("Are you sure you want to exit", font_size=65, font_color = (255,0,0))
+    exit_menu.add.vertical_margin(50)
+    btn1 = exit_menu.add.button('Yes', pygame_menu.events.EXIT)
+    btn2 = exit_menu.add.button('Cancel', exit_menu.disable)
+
+
+
+    exit_menu.mainloop(screen1)
+
 def levels():
-    global submenu_theme
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
+
+    
     #image0
-    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
+    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1l.png")
     image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
     image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3.png")
     image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4.png")
@@ -179,6 +194,8 @@ def levels():
     play_levels.add.vertical_margin(100)
     play_levels.mainloop(screen1)
 
+
+
 menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
 
 menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/menuBackground.png") #odpremo sliko za temo glavnega menija
@@ -193,7 +210,7 @@ submenu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./image
 submenu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
 submenu_theme.background_color = submenu_background_image #temi nastavimo sliko ozadja
 submenu_theme.widget_font = menu_font #nastavimo izbrani font
-submenu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
+submenu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedi
 submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
 
@@ -201,8 +218,7 @@ menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
 menu.add.button('Play', levels) #ustvarimo gumb za igranje same igre
-menu.add.button("How to play", credits)
 menu.add.button('Credits', credits) #ustvarimo gumb za shop
-menu.add.button('Quit', pygame_menu.events.EXIT) #in ustvarimo gumb za izhod
+menu.add.button('Quit', exitMenu) #in ustvarimo gumb za izhod
 
 menu.mainloop(screen1) #ustvarimo mainloop za glavni meni
