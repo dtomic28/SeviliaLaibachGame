@@ -5,47 +5,40 @@ clock = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption("Game with libach")
 
+fps=pygame.time.Clock()
+
 screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
 screen2 = pygame.Surface((640,360))
 
 mainCharacter_png = pygame.image.load("images/mainCharacter.png")
 block_png = pygame.image.load("images/block.png")
+artifact1_png=pygame.image.load("images/artifact1.png")
+artifact2_png=pygame.image.load("images/artifact2.png")
+artifact3_png=pygame.image.load("images/artifact3.png")
+artifact4_png=pygame.image.load("images/artifact4.png")
+building0_png=pygame.image.load("building/stavba0.png")
+building1_png=pygame.image.load("building/stavba1.png")
+building2_png=pygame.image.load("building/stavba2.png")
+streha0_png=pygame.image.load("building/streha0.png")
+streha1_png=pygame.image.load("building/streha1.png")
 
-def world():
-    datoteka = open("map/map0.txt")
-    vsebina = datoteka.read()
-    datoteka.close()
-    vsebina = vsebina.split('\n')
-    map_sez = []
-    for vrstica in vsebina:
-        map_sez.append(list(vrstica))
-    return (map_sez)
+artifactSez=[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 0.0, 3.0, 3.0, 4.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 4.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 2.0, 3.0, 1.0, 2.0, 
+3.0, 3.0, 1.0, 1.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 0.0, 2.0, 2.0, 1.0, 2.0, 3.0, 2.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 2.0, 3.0, 3.0, 4.0, 3.0, 0.0, 2.0, 2.0, 5.0, 2.0, 3.0, 2.0, 3.0, 2.0, 2.0, 4.0, 4.0, 3.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0]
+artifactTimer=0
+artifactFrame=0
+artifactScreenSez=[]
+artifactImage=""
+artifactState=0
 
+buildingSpawnTimer=0
+buildingSez=[]
+buildingImageSez=[building0_png,building1_png,building2_png,]
+rectSez=[]
 def collideTest(Player,rectList):
     for hit in rectList:
         if(hit.colliderect(Player)):
             return(True)
     return(False)
-
-def generateWorld():
-    rect_sez=[]
-    block_sez=[]
-    y=0
-    for vrstica in map_sez:
-        x=0
-        for block in vrstica:
-            if(block=="1"):
-                screen2.blit(block_png,(x*32-cameraMVX,y*32))
-                block_sez.append(str(x)+" "+str(y)+" "+str(block))
-                rect_sez.append(Rect(x*32,y*32,32,32))
-            x+=1
-        y+=1
-
-    return(rect_sez,block_sez)
-
-
-
-map_sez=world()
 
 class mainCharacter:
     def __init__(self,state,x,y,SpeedX,SpeedY):
@@ -55,50 +48,107 @@ class mainCharacter:
         self.SpeedX=SpeedX
         self.SpeedY=SpeedY
 
-class obsticale: 
-    def __init__(self,x,y):
+class artifact2: 
+    def __init__(self,x,y,number,artifactImage,opacity):
         self.x=x
         self.y=y
+        self.number=number
+        self.artifactImage=artifactImage
+        self.opacitySetting=opacity
+        self.opacity=self.artifactImage.set_alpha(self.opacitySetting)
+
+class building:
+    def __init__(self,x,y,image):
+        self.x=x
+        self.y=y
+        self.image=image
+
 
 Player = mainCharacter(True,32,33,0,0)
 cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
-rectBlock_sez=generateWorld()
 
 
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
     return(img)
 
+def buildingLoading(buildingHight,buildingType):
+    global buildingSez,rectSez
+    for buildingY in range(12):
+        if(buildingY<buildingHight or buildingY>buildingHight+4):
+            buildingSez.append(building(Player.x+560,buildingY*32,buildingImageSez[buildingType]))
+            rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
+        if(buildingY==buildingHight):
+            buildingSez.append(building(Player.x+560,buildingY*32,streha0_png))
+            rectSez.append(Rect(Player.x+560,buildingY*32-5,32,32))
+        if(buildingY==buildingHight+4):
+            buildingSez.append(building(Player.x+560,buildingY*32,streha1_png))
+            rectSez.append(Rect(Player.x+560,buildingY*32+5,32,32))
+
+music1 = pygame.mixer.Sound("sound/song1MP.mp3")
+pygame.mixer.music.load('sound/song1MP.mp3')
+pygame.mixer.music.play(1)
+w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez
     while(True):
-
-        for block in rectBlock_sez[1]:
-            spaceCounter=0
-            x=""
-            y=""
-            for mestoInString in block:
-                if(mestoInString == " "):
-                    spaceCounter+=1
-                    if(spaceCounter==2):
-                        break
-                if(spaceCounter==0):
-                    x+=mestoInString
-                if(spaceCounter==1):
-                    y+=mestoInString
-            if(block[-1]=="1"):
-                screen2.blit(block_png,(int(x)*32-cameraMVX,int(y)*32))
-
-
         frame+=1
         cameraMVX= Player.x-50
-        Player_rect = Rect(Player.x,Player.y,32,32)
+        Player_rect = Rect(Player.x,Player.y,16,16)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
+        if(artifactFrame<=((len(artifactSez)-len(artifactSez)%5))):
+            artifactTimer=(artifactTimer+1)%12
+            if(artifactTimer==11):
+                artifactFrame+=1
+                whichArtifact=0
+                artifactHight=0
+                if(artifactSez[artifactFrame] ==1):
+                    whichArtifact=1
+                    artifactHight=190
+                    artifactImage=artifact1_png
+                if(artifactSez[artifactFrame] ==2):
+                    whichArtifact=2
+                    artifactHight=140
+                    artifactImage=artifact2_png
+                if(artifactSez[artifactFrame] ==3):
+                    whichArtifact=3
+                    artifactHight=90
+                    artifactImage=artifact3_png
+                if(artifactSez[artifactFrame] ==4): 
+                    whichArtifact=4
+                    artifactHight=40
+                    artifactImage=artifact4_png
+                if(artifactSez[artifactFrame]!=artifactState):
+                    artifactState=artifactSez[artifactFrame]
+                    artifact1=artifact2(Player.x+360,artifactHight,whichArtifact,artifactImage,255)
+                    artifactScreenSez.append(artifact1)
+        for artifactInGame in artifactScreenSez:
+            if(artifactInGame.x<Player.x+120):
+                artifactInGame.opacitySetting-=2
+                artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
+            else:
+                artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
+            screen2.blit(artifactInGame.artifactImage,(artifactInGame.x-cameraMVX+200,artifactInGame.y))
+            if(artifactInGame.x<Player.x-130):
+                artifactScreenSez.pop(0)
 
+        buildingSpawnTimer=(buildingSpawnTimer+1)%240
+        if(buildingSpawnTimer==239):
+            buildingHight=random.randint(0,8)
+            buildingType=random.randint(0,2)
+            buildingLoading(buildingHight,buildingType)
+        buildingIndex=0
+        for buildingBlock in buildingSez:
+            screen2.blit(buildingBlock.image,(buildingBlock.x-cameraMVX	,buildingBlock.y))
+            if(buildingBlock.x<Player.x-200):
+                buildingSez.pop(buildingIndex)
+                rectSez.pop(buildingIndex)
+            buildingIndex+=1
+                    
         for keyPressed in pygame.event.get():
             if(keyPressed.type == KEYUP):
                 if(keyPressed.key == K_w or keyPressed.key == K_s):
@@ -112,19 +162,29 @@ def main():
                 if(keyPressed.key == K_s):
                     Player.state=False
         if(Player.state==False):
-            Player.SpeedY=5
+            Player.SpeedY=3
         else:
-            Player.SpeedY=-5
+            Player.SpeedY=-3
         Player.y+=Player.SpeedY
         Player.x+=1
 
 
-        if(collideTest(Player_rect,rectBlock_sez[0])==True or Player.y>328):
+        if(Player.y>360 or collideTest(Player_rect,rectSez)==True):
             Player.x=32
             Player.y=320
             Player.state=True
+            artifactScreenSez=[]
+            artifactTimer=0
+            artifactFrame=0
+            buildingSpawnTimer=0
+            buildingSez=[]
+            pygame.mixer.music.stop()
+            pygame.mixer.music.play(1)
+
         screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
         pygame.display.update()
-        clock.tick(60)
+        fps.tick(60)
+        print(fps.get_fps())
+        
 
 main()
