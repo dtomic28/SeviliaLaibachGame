@@ -154,6 +154,7 @@ def main():
                     Player.SpeedY=0
             if(keyPressed.type == KEYDOWN):
                 if (keyPressed.key == K_ESCAPE):
+                    music1.pause()
                     gameStop=True
                 if(keyPressed.key == K_w):
                     Player.state=True
@@ -186,6 +187,13 @@ def main():
         print(fps.get_fps())
         
 
+def playLevel(level: int):
+    global gameStop
+    music1.unpause()
+    gameStop = False
+    main()
+
+
 def credits():
     pass
 
@@ -211,7 +219,7 @@ def levels():
     image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5l.png")
     image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6l.png")
 
-    btn0 = play_levels.add.button(" ", isLocked,0, [True,'false'],background_color=image0).resize(264*1.2, 369*1.2)
+    btn0 = play_levels.add.button(" ", playLevel,0,background_color=image0).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Tutorial level', font_size=40)
     play_levels.add.vertical_margin(20)       
