@@ -145,16 +145,15 @@ def exitMenu():
 def levels():
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
 
-    
-    #image0
-    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1l.png")
-    image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
-    image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3.png")
-    image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4.png")
-    image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5.png")
-    image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6.png")
+    image0 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/0.png")
+    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
+    image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2l.png")
+    image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3l.png")
+    image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4l.png")
+    image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5l.png")
+    image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6l.png")
 
-    btn0 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
+    btn0 = play_levels.add.button(" ", main, background_color=image0).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Tutorial level', font_size=40)
     play_levels.add.vertical_margin(20)       
