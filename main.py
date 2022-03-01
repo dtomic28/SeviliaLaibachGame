@@ -129,7 +129,8 @@ def credits():
     pass
 
 def levels():
-    play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = menu_theme)
+    global submenu_theme
+    play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
     #image0
     image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
     image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2.png")
@@ -186,6 +187,15 @@ menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
 menu_theme.widget_font = menu_font #nastavimo izbrani font
 menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
 menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
+
+submenu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/subMenuBackground.png") #odpremo sliko za temo glavnega menija
+submenu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
+submenu_theme.background_color = submenu_background_image #temi nastavimo sliko ozadja
+submenu_theme.widget_font = menu_font #nastavimo izbrani font
+submenu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
+submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
