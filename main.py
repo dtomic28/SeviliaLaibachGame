@@ -1,4 +1,3 @@
-
 import pygame, pygame_menu,sys, random
 from pygame.locals import *
 clock = pygame.time.Clock()
@@ -69,7 +68,7 @@ cameraMVX=0
 
 #ozadjeAnimation=["pravilno0.png","pravilna1.png","pravilno2.png","pravilno3.png","pravilno4.png","pravilno5.png","pravilno6.png"] Primer animacije
 frame=0
-
+gameStop=False
 
 def imageLoad(frame,animation):
     img=pygame.image.load(animation[frame])
@@ -90,11 +89,11 @@ def buildingLoading(buildingHight,buildingType):
 
 music1 = pygame.mixer.Sound("sound/song1MP.mp3")
 pygame.mixer.music.load('sound/song1MP.mp3')
-pygame.mixer.music.play(1)
+startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez
-    while(True):
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez, startMusicTimer,gameStop
+    while(gameStop==False):
         frame+=1
         cameraMVX= Player.x-50
         Player_rect = Rect(Player.x,Player.y,16,16)
@@ -155,8 +154,8 @@ def main():
                     Player.SpeedY=0
             if(keyPressed.type == KEYDOWN):
                 if (keyPressed.key == K_ESCAPE):
-                    pygame.quit()
-                    sys.exit()
+                    pygame.mixer.music.pause()
+                    gameStop=True
                 if(keyPressed.key == K_w):
                     Player.state=True
                 if(keyPressed.key == K_s):
@@ -169,7 +168,7 @@ def main():
         Player.x+=1
 
 
-        if(Player.y>360 or collideTest(Player_rect,rectSez)==True):
+        if(Player.y>360 or collideTest(Player_rect,rectSez)==True or startMusicTimer==False):
             Player.x=32
             Player.y=320
             Player.state=True
@@ -178,6 +177,7 @@ def main():
             artifactFrame=0
             buildingSpawnTimer=0
             buildingSez=[]
+            startMusicTimer=True
             pygame.mixer.music.stop()
             pygame.mixer.music.play(1)
 
@@ -187,4 +187,102 @@ def main():
         print(fps.get_fps())
         
 
-main()
+def playLevel(level: int):
+    global gameStop
+    pygame.mixer.music.unpause()
+    gameStop = False
+    main()
+
+
+def credits():
+    pass
+
+def isLocked(lvl, unlocked):
+    print(unlocked)
+
+def exitMenu():
+    exit_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
+    exit_menu.add.label("Are you sure you want to exit", font_size=65, font_color = (255,0,0))
+    exit_menu.add.vertical_margin(50)
+    btn1 = exit_menu.add.button('Yes', pygame_menu.events.EXIT)
+    btn2 = exit_menu.add.button('Cancel', exit_menu.disable)
+    exit_menu.mainloop(screen1)
+
+def levels():
+    play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
+
+    image0 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/0.png")
+    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
+    image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2l.png")
+    image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3l.png")
+    image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4l.png")
+    image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5l.png")
+    image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6l.png")
+
+    btn0 = play_levels.add.button(" ", playLevel,0,background_color=image0).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Tutorial level', font_size=40)
+    play_levels.add.vertical_margin(20)       
+        
+    btn1 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 1', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn2 = play_levels.add.button(" ", main, background_color=image2).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 2', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn3 = play_levels.add.button(" ", main, background_color=image3).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 3', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn4 = play_levels.add.button(" ", main, background_color=image4).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 4', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn5 = play_levels.add.button(" ", main, background_color=image5).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 5', font_size=40)
+    play_levels.add.vertical_margin(20)
+
+    btn6 = play_levels.add.button(" ", main, background_color=image6).resize(264*1.2, 369*1.2)
+    play_levels.add.vertical_margin(20)
+    play_levels.add.label('Level 6', font_size=40)
+    play_levels.add.vertical_margin(20)
+    
+    play_levels.add.vertical_margin(100)  
+    play_levels.add.button('Back', play_levels.disable)
+    play_levels.add.vertical_margin(100)
+    play_levels.mainloop(screen1)
+
+
+
+menu_font = pygame_menu.font.FONT_8BIT  #set font
+menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/menuBackground.png") #open background image
+menu_theme = pygame_menu.themes.THEME_DARK.copy() #copy existing theme
+menu_theme.background_color = menu_background_image #set background image
+menu_theme.widget_font = menu_font #set selected font
+menu_theme.widget_font_size = 64 #set font size
+menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection() #set selection type
+
+
+submenu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/subMenuBackground.png") 
+submenu_theme = pygame_menu.themes.THEME_DARK.copy() 
+submenu_theme.background_color = submenu_background_image 
+submenu_theme.widget_font = menu_font 
+submenu_theme.widget_font_size = 64 
+submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
+
+menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
+menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
+menu.add.vertical_margin(500)
+menu.add.button('Play', levels) 
+menu.add.button('Credits', credits) 
+menu.add.button('Quit', exitMenu) 
+
+menu.mainloop(screen1) #main loop
