@@ -1,5 +1,5 @@
 
-import pygame, pygame_menu,sys, random, threading
+import pygame, pygame_menu,sys, random
 from pygame.locals import *
 clock = pygame.time.Clock()
 pygame.init()
@@ -33,7 +33,7 @@ artifactState=0
 buildingSpawnTimer=0
 buildingSez=[]
 buildingImageSez=[building0_png,building1_png,building2_png,]
-
+rectSez=[]
 def collideTest(Player,rectList):
     for hit in rectList:
         if(hit.colliderect(Player)):
@@ -76,26 +76,28 @@ def imageLoad(frame,animation):
     return(img)
 
 def buildingLoading(buildingHight,buildingType):
-    global buildingSez
+    global buildingSez,rectSez
     for buildingY in range(12):
         if(buildingY<buildingHight or buildingY>buildingHight+4):
             buildingSez.append(building(Player.x+560,buildingY*32,buildingImageSez[buildingType]))
+            rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
         if(buildingY==buildingHight):
             buildingSez.append(building(Player.x+560,buildingY*32,streha0_png))
+            rectSez.append(Rect(Player.x+560,buildingY*32-5,32,32))
         if(buildingY==buildingHight+4):
             buildingSez.append(building(Player.x+560,buildingY*32,streha1_png))
+            rectSez.append(Rect(Player.x+560,buildingY*32+5,32,32))
 
 music1 = pygame.mixer.Sound("sound/song1MP.mp3")
 pygame.mixer.music.load('sound/song1MP.mp3')
 pygame.mixer.music.play(1)
 w, h = pygame.display.get_surface().get_size()
-thread1 = buildingLoading(0,0)
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez,rectSez
     while(True):
         frame+=1
         cameraMVX= Player.x-50
-        Player_rect = Rect(Player.x,Player.y,32,32)
+        Player_rect = Rect(Player.x,Player.y,16,16)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
         if(artifactFrame<=((len(artifactSez)-len(artifactSez)%5))):
@@ -124,15 +126,15 @@ def main():
                     artifactState=artifactSez[artifactFrame]
                     artifact1=artifact2(Player.x+360,artifactHight,whichArtifact,artifactImage,255)
                     artifactScreenSez.append(artifact1)
-            for artifactInGame in artifactScreenSez:
-                if(artifactInGame.x<Player.x+120):
-                    artifactInGame.opacitySetting-=2
-                    artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
-                else:
-                    artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
-                screen2.blit(artifactInGame.artifactImage,(artifactInGame.x-cameraMVX+200,artifactInGame.y))
-                if(artifactInGame.x<Player.x-130):
-                    artifactScreenSez.pop(0)
+        for artifactInGame in artifactScreenSez:
+            if(artifactInGame.x<Player.x+120):
+                artifactInGame.opacitySetting-=2
+                artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
+            else:
+                artifactInGame.artifactImage.set_alpha(artifactInGame.opacitySetting)
+            screen2.blit(artifactInGame.artifactImage,(artifactInGame.x-cameraMVX+200,artifactInGame.y))
+            if(artifactInGame.x<Player.x-130):
+                artifactScreenSez.pop(0)
 
         buildingSpawnTimer=(buildingSpawnTimer+1)%240
         if(buildingSpawnTimer==239):
@@ -144,6 +146,7 @@ def main():
             screen2.blit(buildingBlock.image,(buildingBlock.x-cameraMVX	,buildingBlock.y))
             if(buildingBlock.x<Player.x-200):
                 buildingSez.pop(buildingIndex)
+                rectSez.pop(buildingIndex)
             buildingIndex+=1
                     
         for keyPressed in pygame.event.get():
@@ -166,7 +169,7 @@ def main():
         Player.x+=1
 
 
-        if(Player.y>360):
+        if(Player.y>360 or collideTest(Player_rect,rectSez)==True):
             Player.x=32
             Player.y=320
             Player.state=True
@@ -175,6 +178,8 @@ def main():
             artifactFrame=0
             buildingSpawnTimer=0
             buildingSez=[]
+            pygame.mixer.music.stop()
+            pygame.mixer.music.play(1)
 
         screen2.blit(mainCharacter_png,(Player.x-cameraMVX,Player.y))
         pygame.display.update()
