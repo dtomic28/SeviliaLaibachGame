@@ -128,8 +128,8 @@ def main():
 def credits():
     pass
 
-def isLocked():
-    pass
+def isLocked(lvl, unlocked):
+    print(unlocked)
 
 def exitMenu():
     exit_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
@@ -150,7 +150,7 @@ def levels():
     image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5l.png")
     image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6l.png")
 
-    btn0 = play_levels.add.button(" ", main, background_color=image0).resize(264*1.2, 369*1.2)
+    btn0 = play_levels.add.button(" ", isLocked,0, [True,'false'],background_color=image0).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Tutorial level', font_size=40)
     play_levels.add.vertical_margin(20)       
