@@ -137,9 +137,6 @@ def exitMenu():
     exit_menu.add.vertical_margin(50)
     btn1 = exit_menu.add.button('Yes', pygame_menu.events.EXIT)
     btn2 = exit_menu.add.button('Cancel', exit_menu.disable)
-
-
-
     exit_menu.mainloop(screen1)
 
 def levels():
@@ -195,29 +192,28 @@ def levels():
 
 
 
-menu_font = pygame_menu.font.FONT_8BIT #izberemo font za glavni meni
+menu_font = pygame_menu.font.FONT_8BIT  #set font
+menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/menuBackground.png") #open background image
+menu_theme = pygame_menu.themes.THEME_DARK.copy() #copy existing theme
+menu_theme.background_color = menu_background_image #set background image
+menu_theme.widget_font = menu_font #set selected font
+menu_theme.widget_font_size = 64 #set font size
+menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection() #set selection type
 
-menu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/menuBackground.png") #odpremo sliko za temo glavnega menija
-menu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
-menu_theme.background_color = menu_background_image #temi nastavimo sliko ozadja
-menu_theme.widget_font = menu_font #nastavimo izbrani font
-menu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedila
-menu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
-
-submenu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/subMenuBackground.png") #odpremo sliko za temo glavnega menija
-submenu_theme = pygame_menu.themes.THEME_DARK.copy() #kopiramo že obstoječo temo, ki jo bomo uredili
-submenu_theme.background_color = submenu_background_image #temi nastavimo sliko ozadja
-submenu_theme.widget_font = menu_font #nastavimo izbrani font
-submenu_theme.widget_font_size = 64 #nastavimo izbrano velikost besedi
+submenu_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/subMenuBackground.png") 
+submenu_theme = pygame_menu.themes.THEME_DARK.copy() 
+submenu_theme.background_color = submenu_background_image 
+submenu_theme.widget_font = menu_font 
+submenu_theme.widget_font_size = 64 
 submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
-menu.add.button('Play', levels) #ustvarimo gumb za igranje same igre
-menu.add.button('Credits', credits) #ustvarimo gumb za shop
-menu.add.button('Quit', exitMenu) #in ustvarimo gumb za izhod
+menu.add.button('Play', levels) 
+menu.add.button('Credits', credits) 
+menu.add.button('Quit', exitMenu) 
 
-menu.mainloop(screen1) #ustvarimo mainloop za glavni meni
+menu.mainloop(screen1) #main loop
