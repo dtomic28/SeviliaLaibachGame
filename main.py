@@ -118,7 +118,7 @@ def main():
             strehaLVL=strehaSez1
         frame+=1
         cameraMVX= Player.x-50
-        Player_rect = Rect(Player.x,Player.y,16,16)
+        Player_rect = Rect(Player.x,Player.y,24,15)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
         screen2.blit(OneBackground_png,(0,0))
