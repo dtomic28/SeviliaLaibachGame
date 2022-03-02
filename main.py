@@ -24,7 +24,7 @@ artifactLVL=[]
 strehaLVL=[]
 buildingLVL=[]
 
-#tutorial images
+#lvl1 images
 Oneartifact0_png=pygame.image.load("level1/artifact0.png")
 Oneartifact1_png=pygame.image.load("level1/artifact1.png")
 Oneartifact2_png=pygame.image.load("level1/artifact2.png")
@@ -35,7 +35,8 @@ Onebuilding1_png=pygame.image.load("level1/stavba/stavba1.png")
 Onebuilding2_png=pygame.image.load("level1/stavba/stavba2.png")
 Onestreha0_png=pygame.image.load("level1/stavba/streha0.png")
 Onestreha1_png=pygame.image.load("level1/stavba/streha1.png")
-#tutorial images
+OneBackground_png=pygame.image.load("level1/background.png")
+#lvl1 images
 
 artifactSez=[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 0.0, 3.0, 3.0, 4.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 4.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 2.0, 3.0, 1.0, 2.0, 
 3.0, 3.0, 1.0, 1.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 0.0, 2.0, 2.0, 1.0, 2.0, 3.0, 2.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 2.0, 3.0, 3.0, 4.0, 3.0, 0.0, 2.0, 2.0, 5.0, 2.0, 3.0, 2.0, 3.0, 2.0, 2.0, 4.0, 4.0, 3.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0]
@@ -120,6 +121,7 @@ def main():
         Player_rect = Rect(Player.x,Player.y,16,16)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
+        screen2.blit(OneBackground_png,(0,0))
         if(artifactFrame<=((len(artifactSez)-len(artifactSez)%5))):
             artifactTimer=(artifactTimer+1)%12
             if(artifactTimer==11):
