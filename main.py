@@ -194,11 +194,13 @@ def playLevel(level: int):
     main()
 
 
+def checkIfLocked(level: int):
+    uImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2.png", "./images/menu/3.png", "./images/menu/4.png", "./images/menu/5.png", "./images/menu/6.png"]
+    lImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2l.png", "./images/menu/3l.png", "./images/menu/4l.png", "./images/menu/5l.png", "./images/menu/6l.png"]
+    return lImg[level]
+
 def credits():
     pass
-
-def isLocked(lvl, unlocked):
-    print(unlocked)
 
 def exitMenu():
     exit_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
@@ -211,45 +213,45 @@ def exitMenu():
 def levels():
     play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
 
-    image0 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/0.png")
-    image1 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/1.png")
-    image2 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/2l.png")
-    image3 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/3l.png")
-    image4 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/4l.png")
-    image5 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/5l.png")
-    image6 = pygame_menu.baseimage.BaseImage(image_path = "./images/menu/6l.png")
+    image0 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(0))
+    image1 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(1))
+    image2 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(2))
+    image3 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(3))
+    image4 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(4))
+    image5 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(5))
+    image6 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(6))
 
     btn0 = play_levels.add.button(" ", playLevel,0,background_color=image0).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Tutorial level', font_size=40)
     play_levels.add.vertical_margin(20)       
         
-    btn1 = play_levels.add.button(" ", main, background_color=image1).resize(264*1.2, 369*1.2)
+    btn1 = play_levels.add.button(" ", playLevel,1, background_color=image1).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 1', font_size=40)
     play_levels.add.vertical_margin(20)
 
-    btn2 = play_levels.add.button(" ", main, background_color=image2).resize(264*1.2, 369*1.2)
+    btn2 = play_levels.add.button(" ", playLevel,2, background_color=image2).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 2', font_size=40)
     play_levels.add.vertical_margin(20)
 
-    btn3 = play_levels.add.button(" ", main, background_color=image3).resize(264*1.2, 369*1.2)
+    btn3 = play_levels.add.button(" ", playLevel,3, background_color=image3).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 3', font_size=40)
     play_levels.add.vertical_margin(20)
 
-    btn4 = play_levels.add.button(" ", main, background_color=image4).resize(264*1.2, 369*1.2)
+    btn4 = play_levels.add.button(" ", playLevel,4, background_color=image4).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 4', font_size=40)
     play_levels.add.vertical_margin(20)
 
-    btn5 = play_levels.add.button(" ", main, background_color=image5).resize(264*1.2, 369*1.2)
+    btn5 = play_levels.add.button(" ", playLevel,5, background_color=image5).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 5', font_size=40)
     play_levels.add.vertical_margin(20)
 
-    btn6 = play_levels.add.button(" ", main, background_color=image6).resize(264*1.2, 369*1.2)
+    btn6 = play_levels.add.button(" ", playLevel,6, background_color=image6).resize(264*1.2, 369*1.2)
     play_levels.add.vertical_margin(20)
     play_levels.add.label('Level 6', font_size=40)
     play_levels.add.vertical_margin(20)
