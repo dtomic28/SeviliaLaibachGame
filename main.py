@@ -11,15 +11,18 @@ screen2 = pygame.Surface((640,360))
 
 mainCharacter_png = pygame.image.load("images/mainCharacter.png")
 block_png = pygame.image.load("images/block.png")
-artifact1_png=pygame.image.load("images/artifact1.png")
-artifact2_png=pygame.image.load("images/artifact2.png")
-artifact3_png=pygame.image.load("images/artifact3.png")
-artifact4_png=pygame.image.load("images/artifact4.png")
-building0_png=pygame.image.load("building/stavba0.png")
-building1_png=pygame.image.load("building/stavba1.png")
-building2_png=pygame.image.load("building/stavba2.png")
-streha0_png=pygame.image.load("building/streha0.png")
-streha1_png=pygame.image.load("building/streha1.png")
+
+#lvl1 images
+artifact1_png=pygame.image.load("level1/artifact0.png")
+artifact2_png=pygame.image.load("level1/artifact1.png")
+artifact3_png=pygame.image.load("level1/artifact2.png")
+artifact4_png=pygame.image.load("level1/artifact3.png")
+building0_png=pygame.image.load("level1/stavba/stavba0.png")
+building1_png=pygame.image.load("level1/stavba/stavba1.png")
+building2_png=pygame.image.load("level1/stavba/stavba2.png")
+streha0_png=pygame.image.load("level1/stavba/streha0.png")
+streha1_png=pygame.image.load("level1/stavba/streha1.png")
+#lvl1 images
 
 artifactSez=[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 0.0, 3.0, 3.0, 4.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 4.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 2.0, 3.0, 1.0, 2.0, 
 3.0, 3.0, 1.0, 1.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 0.0, 2.0, 2.0, 1.0, 2.0, 3.0, 2.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 2.0, 3.0, 3.0, 4.0, 3.0, 0.0, 2.0, 2.0, 5.0, 2.0, 3.0, 2.0, 3.0, 2.0, 2.0, 4.0, 4.0, 3.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0]
