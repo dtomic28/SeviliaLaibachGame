@@ -95,13 +95,13 @@ def imageLoad(frame,animation,x,y):
 def buildingLoading(buildingHight,buildingType):
     global buildingSez,rectSez,buildingLVL
     for buildingY in range(12):
-        if(buildingY<buildingHight or buildingY>buildingHight+4):
+        if(buildingY<buildingHight or buildingY>buildingHight+5):
             buildingSez.append(building(Player.x+560,buildingY*32,buildingLVL[buildingType]))
             rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
         if(buildingY==buildingHight):
             buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[0]))
             rectSez.append(Rect(Player.x+560,buildingY*32-5,32,32))
-        if(buildingY==buildingHight+4):
+        if(buildingY==buildingHight+5):
             buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[1]))
             rectSez.append(Rect(Player.x+560,buildingY*32+5,32,32))
 
@@ -112,7 +112,7 @@ w, h = pygame.display.get_surface().get_size()
 def main():
     global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer
     while(gameStop==False):
-        if(levelState==0):
+        if(levelState==1):
             artifactLVL=artifactSez1
             buildingLVL=buildingImageSez1
             strehaLVL=strehaSez1
