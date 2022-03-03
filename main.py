@@ -195,7 +195,10 @@ def playLevel(level: int):
 
 
 def credits():
-    pass
+    creditsMenu = pygame_menu.Menu("", 1920, 1080, theme = credits_theme)
+    creditsMenu.add.vertical_margin(800)
+    creditsMenu.add.button('Back', creditsMenu.disable)
+    creditsMenu.mainloop(screen1)
 
 def isLocked(lvl, unlocked):
     print(unlocked)
@@ -276,6 +279,14 @@ submenu_theme.background_color = submenu_background_image
 submenu_theme.widget_font = menu_font 
 submenu_theme.widget_font_size = 64 
 submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
+
+credits_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/creditsBackground.png") 
+credits_theme = pygame_menu.themes.THEME_DARK.copy() 
+credits_theme.background_color = credits_background_image
+credits_theme.widget_font = menu_font 
+credits_theme.widget_font_size = 64 
+credits_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
