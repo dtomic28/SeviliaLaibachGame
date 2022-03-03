@@ -158,7 +158,7 @@ pygame.mixer.music.load('sound/song1MP.mp3')
 startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,TwoPticAnimationTimer,TwoPticAnimationFrame,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png
     while(gameStop==False):
         allAnimationTimer=(allAnimationTimer+1)%10
         if(allAnimationTimer==9):
@@ -166,6 +166,7 @@ def main():
         if(levelState==1):
             artifactLVL=artifactSez1
             buildingLVL=buildingImageSez1
+            Background_png=OneBackground_png
             strehaLVL=strehaSez1
 
             soundSez=sound1
@@ -173,6 +174,7 @@ def main():
             artifactLVL=artifactSez2
             buildingLVL=buildingImageSez2
             strehaLVL=strehaSez2
+            Background_png=TwoBackground_png
             soundSez=sound1
             
         frame+=1
@@ -180,7 +182,7 @@ def main():
         Player_rect = Rect(Player.x,Player.y,24,15)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
-        screen2.blit(OneBackground_png,(0,0))
+        screen2.blit(Background_png,(0,0))
         if(artifactFrame<=((len(soundSez)-len(soundSez)%5))):
             artifactTimer=(artifactTimer+1)%12
             if(artifactTimer==11):
