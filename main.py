@@ -443,8 +443,8 @@ def main():
         if(levelState==0):
             screen2.blit(tutorialTxt,(50,45))
         if(artifactFrame<=(((len(soundSez)-1)-(len(soundSez)-1)%5))):
-            artifactTimer=(artifactTimer+1)%12
-            if(artifactTimer==11):
+            artifactTimer=(artifactTimer+1)%6
+            if(artifactTimer==5):
                 artifactFrame+=1
                 whichArtifact=0
                 artifactHight=0
