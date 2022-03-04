@@ -471,8 +471,8 @@ def main():
                 if(soundSez[artifactFrame]!=artifactState):
                     artifactState=soundSez[artifactFrame]
                     if(artifactState==5):
-                        artifactFrame=4
-                    artifact1=artifact2(Player.x+360,artifactHight,whichArtifact,artifactImage,255,artifactLVL[int(soundSez[artifactFrame])][2])
+                        artifactState=4
+                    artifact1=artifact2(Player.x+360,artifactHight,whichArtifact,artifactImage,255,artifactLVL[int(artifactState)][2])
                     artifactScreenSez.append(artifact1)
         else:
             artifactTimer=(artifactTimer+1)%12
@@ -547,6 +547,13 @@ def main():
             fileWrite.close()
             return nextLevelScreen(levelState)
         imageLoad(raketaAnimationFrame,raketa,Player.x,Player.y)
+        pygame.draw.rect(screen2, [255,255,255], pygame.Rect(0, 0, 640, 10))
+        if(artifactFrame==0):
+            artifactFrame=1
+            pygame.draw.rect(screen2, [255,0,0], pygame.Rect(0, 0,(artifactFrame/(len(soundSez)-1))*640 , 10))
+            artifactFrame=0
+        else:
+            pygame.draw.rect(screen2, [255,0,0], pygame.Rect(0, 0,(artifactFrame/(len(soundSez)-1))*640 , 10))
         pygame.display.update()
         fps.tick(60)
         
