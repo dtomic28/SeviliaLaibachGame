@@ -589,6 +589,18 @@ def playLevel(level: int):
     gameStop = False
     main()
 
+def goToLevels():
+    global nextLevel_menu
+    nextLevel_menu.disable()
+    levels()
+
+def nextLevelScreen(currentLevel: int):
+    global nextLevel_menu
+    nextLevel_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
+    nextLevel_menu.add.label("Congradulations you compleated the level", font_size=48, font_color = (255,255,255))
+    nextLevel_menu.add.vertical_margin(50)
+    btn2 = nextLevel_menu.add.button('Go to menu', goToLevels)
+    nextLevel_menu.mainloop(screen1)
 
 def checkIfLocked(level: int):
     uImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2.png", "./images/menu/3.png", "./images/menu/4.png", "./images/menu/5.png", "./images/menu/6.png"]
@@ -596,7 +608,10 @@ def checkIfLocked(level: int):
     return lImg[level]
 
 def credits():
-    pass
+    creditsMenu = pygame_menu.Menu("", 1920, 1080, theme = credits_theme)
+    creditsMenu.add.vertical_margin(800)
+    creditsMenu.add.button('Back', creditsMenu.disable)
+    creditsMenu.mainloop(screen1)
 
 def exitMenu():
     exit_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
@@ -676,11 +691,19 @@ submenu_theme.widget_font_size = 64
 submenu_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
 
+credits_background_image = pygame_menu.baseimage.BaseImage(image_path = "./images/creditsBackground.png") 
+credits_theme = pygame_menu.themes.THEME_DARK.copy() 
+credits_theme.background_color = credits_background_image
+credits_theme.widget_font = menu_font 
+credits_theme.widget_font_size = 64 
+credits_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
+
+
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
 menu.add.button('Play', levels) 
-menu.add.button('Credits', credits) 
+menu.add.button('Credits', credits)
 menu.add.button('Quit', exitMenu) 
 
 menu.mainloop(screen1) #main loop
