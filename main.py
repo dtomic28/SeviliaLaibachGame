@@ -514,9 +514,9 @@ def main():
                 if(keyPressed.key == K_s):
                     Player.state=False
         if(Player.state==False):
-            Player.SpeedY=3
+            Player.SpeedY=2
         else:
-            Player.SpeedY=-3
+            Player.SpeedY=-2
         Player.y+=Player.SpeedY
         Player.x+=1
 
