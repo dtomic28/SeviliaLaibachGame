@@ -8,6 +8,15 @@ fps=pygame.time.Clock()
 allAnimationTimer=0
 allAnimationFrame=0
 
+lvlsUnloceked=[]
+readFile=open("save.txt", "r")
+vsebina=readFile
+for i in vsebina:
+    for j in i:
+        lvlsUnloceked.append(j)
+print(lvlsUnloceked)
+readFile.close()
+
 screen1 = pygame.display.set_mode((1920,1080),FULLSCREEN)
 screen2 = pygame.Surface((640,360))
 
@@ -285,7 +294,7 @@ pygame.mixer.music.load('sound/song1MP.mp3')
 startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked
     while(gameStop==False):
         allAnimationTimer=(allAnimationTimer+1)%10
         if(allAnimationTimer==9):
@@ -371,6 +380,10 @@ def main():
                     artifactState=soundSez[artifactFrame]
                     artifact1=artifact2(Player.x+360,artifactHight,whichArtifact,artifactImage,255,artifactLVL[int(soundSez[artifactFrame])][2])
                     artifactScreenSez.append(artifact1)
+        else:
+            artifactTimer=(artifactTimer+1)%12
+            if(artifactTimer==11):
+                artifactFrame+=1
         for artifactInGame in artifactScreenSez:
             if(artifactInGame.x<Player.x+120):
                 artifactInGame.opacitySetting-=2
@@ -430,7 +443,15 @@ def main():
         raketaAnimationTimer=(raketaAnimationTimer+1)%10
         if(raketaAnimationTimer==9):
             raketaAnimationFrame=(raketaAnimationFrame+1)%4
-        
+        if(artifactFrame==len(soundSez)+5):
+            vsebina=""
+            lvlsUnloceked[levelState+1]=1
+            fileWrite=open("save.txt","w")
+            for i in lvlsUnloceked:
+                vsebina+=str(i)
+            fileWrite.write(vsebina)
+            fileWrite.close()
+            return
         imageLoad(raketaAnimationFrame,raketa,Player.x,Player.y)
         pygame.display.update()
         fps.tick(60)
