@@ -417,8 +417,8 @@ def goToLevels():
 def nextLevelScreen(currentLevel: int):
     global nextLevel_menu
     nextLevel_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
-    nextLevel_menu.add.label("Congradulations you compleated the level", font_size=65)
-    btn1 = nextLevel_menu.add.button('Next level', playLevel,3)
+    nextLevel_menu.add.label("Congradulations you compleated the level", font_size=48, font_color = (255,255,255))
+    nextLevel_menu.add.vertical_margin(50)
     btn2 = nextLevel_menu.add.button('Go to menu', goToLevels)
     nextLevel_menu.mainloop(screen1)
 
