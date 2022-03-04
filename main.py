@@ -523,7 +523,7 @@ menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
 menu.add.button('Play', levels) 
-menu.add.button('Credits', nextLevelScreen,3) 
+menu.add.button('Credits', credits)
 menu.add.button('Quit', exitMenu) 
 
 menu.mainloop(screen1) #main loop
