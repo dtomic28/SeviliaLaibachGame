@@ -41,7 +41,7 @@ Zerobuilding1_png=pygame.image.load("level0/stavba/stavba1.png")
 Zerobuilding2_png=pygame.image.load("level0/stavba/stavba2.png")
 Zerostreha0_png=pygame.image.load("level0/stavba/streha0.png")
 Zerostreha1_png=pygame.image.load("level0/stavba/streha1.png")
-ZeroBackground_png=pygame.image.load("level0/background.png")
+ZeroBackground_png=[pygame.image.load("level0/background.png"),1]
 
 Zeroartefact0Sez=[Zeroartifact0_png]
 Zeroartefact1Sez=[Zeroartifact1_png]
@@ -50,7 +50,7 @@ Zeroartefact3Sez=[Zeroartifact3_png]
 Zeroartefact4Sez=[Zeroartifact4_png]
 buildingImageSez0=[Zerobuilding0_png,Zerobuilding1_png,Zerobuilding2_png]
 artifactSez0=[[Zeroartefact0Sez,0,1],[Zeroartefact1Sez,0,1],[Zeroartefact2Sez,0,1],[Zeroartefact3Sez,0,1],[Zeroartefact4Sez,0,1]]
-strehaSez0=[Zerostreha0_png,Zerostreha1_png]
+strehaSez0=[Zerostreha0_png,Zerostreha1_png,Zerostreha0_png,Zerostreha1_png,Zerostreha0_png,Zerostreha1_png]
 #lvl0 images 
 
 #lvl1 images
@@ -64,7 +64,7 @@ Onebuilding1_png=pygame.image.load("level1/stavba/stavba1.png")
 Onebuilding2_png=pygame.image.load("level1/stavba/stavba2.png")
 Onestreha0_png=pygame.image.load("level1/stavba/streha0.png")
 Onestreha1_png=pygame.image.load("level1/stavba/streha1.png")
-OneBackground_png=pygame.image.load("level1/background.png")
+OneBackground_png=[pygame.image.load("level1/background.png"),1]
 
 Oneartefact0Sez=[Oneartifact0_png]
 Oneartefact1Sez=[Oneartifact1_png]
@@ -73,7 +73,7 @@ Oneartefact3Sez=[Oneartifact3_png]
 Oneartefact4Sez=[Oneartifact4_png]
 buildingImageSez1=[Onebuilding0_png,Onebuilding1_png,Onebuilding2_png]
 artifactSez1=[[Oneartefact0Sez,0,1],[Oneartefact1Sez,0,1],[Oneartefact2Sez,0,1],[Oneartefact3Sez,0,1],[Oneartefact4Sez,0,1]]
-strehaSez1=[Onestreha0_png,Onestreha1_png]
+strehaSez1=[Onestreha0_png,Onestreha1_png,Onestreha0_png,Onestreha1_png,Onestreha0_png,Onestreha1_png]
 #lvl1 images
 
 #lvl2 images
@@ -95,7 +95,7 @@ Twostreha2_png=pygame.image.load("level2/stavba/streha2.png")
 Twostreha3_png=pygame.image.load("level2/stavba/streha3.png")
 Twostreha4_png=pygame.image.load("level2/stavba/streha4.png")
 Twostreha5_png=pygame.image.load("level2/stavba/streha5.png")
-TwoBackground_png=pygame.image.load("level2/background.png")
+TwoBackground_png=[pygame.image.load("level2/background.png"),1]
 Twoartefact0Sez=[Two0artifact0_png,Two1artifact0_png,Two2artifact0_png,Two3artifact0_png,Two4artifact0_png]
 Twoartefact1Sez=[Twoartifact1_png]
 Twoartefact2Sez=[Twoartifact2_png]
@@ -117,7 +117,7 @@ Threebuilding1_png=pygame.image.load("level3/stavba/stavba1.png")
 Threebuilding2_png=pygame.image.load("level3/stavba/stavba2.png")
 Threestreha0_png=pygame.image.load("level3/stavba/streha0.png")
 Threestreha1_png=pygame.image.load("level3/stavba/streha1.png")
-ThreeBackground_png=pygame.image.load("level3/background.png")
+ThreeBackground_png=[pygame.image.load("level3/background.png"),1]
 
 Threeartefact0Sez=[Threeartifact0_png]
 Threeartefact1Sez=[Threeartifact1_png]
@@ -126,7 +126,7 @@ Threeartefact3Sez=[Threeartifact3_png]
 Threeartefact4Sez=[Threeartifact4_png]
 buildingImageSez3=[Threebuilding0_png,Threebuilding1_png,Threebuilding2_png]
 artifactSez3=[[Threeartefact0Sez,0,1],[Threeartefact1Sez,0,1],[Threeartefact2Sez,0,1],[Threeartefact3Sez,0,1],[Threeartefact4Sez,0,1]]
-strehaSez3=[Threestreha0_png,Threestreha1_png]
+strehaSez3=[Threestreha0_png,Threestreha1_png,Threestreha0_png,Threestreha1_png,Threestreha0_png,Threestreha1_png]
 #lvl3 images 
 
 #lvl4 images
@@ -140,7 +140,7 @@ Fourbuilding1_png=pygame.image.load("level4/stavba/stavba1.png")
 Fourbuilding2_png=pygame.image.load("level4/stavba/stavba2.png")
 Fourstreha0_png=pygame.image.load("level4/stavba/streha0.png")
 Fourstreha1_png=pygame.image.load("level4/stavba/streha1.png")
-FourBackground_png=pygame.image.load("level4/background.png")
+FourBackground_png=[pygame.image.load("level4/background.png"),1]
 
 Fourartefact0Sez=[Fourartifact0_png]
 Fourartefact1Sez=[Fourartifact1_png]
@@ -166,14 +166,18 @@ Fivebuilding1_png=pygame.image.load("level5/stavba/stavba1.png")
 Fivebuilding2_png=pygame.image.load("level5/stavba/stavba2.png")
 Fivestreha0_png=pygame.image.load("level5/stavba/streha0.png")
 Fivestreha1_png=pygame.image.load("level5/stavba/streha1.png")
-FiveBackground_png=pygame.image.load("level5/background/1.png")
+FiveBackground0_png=pygame.image.load("level5/background/1.png")
+FiveBackground1_png=pygame.image.load("level5/background/2.png")
+FiveBackground2_png=pygame.image.load("level5/background/3.png")
+FiveBackground3_png=pygame.image.load("level5/background/4.png")
+FiveBackground_png=[FiveBackground0_png,FiveBackground1_png,FiveBackground2_png,FiveBackground3_png,FiveBackground3_png,FiveBackground2_png,FiveBackground1_png,FiveBackground0_png,8]
 Fiveartefact0Sez=[Five0artifact0_png,Five1artifact0_png,Five2artifact0_png,Five3artifact0_png]
 Fiveartefact1Sez=[Fiveartifact1_png]
 Fiveartefact2Sez=[Fiveartifact2_png]
 Fiveartefact3Sez=[Fiveartifact3_png]
 Fiveartefact4Sez=[Fiveartifact0_png]
 artifactSez5=[[Fiveartefact1Sez,0,1],[Fiveartefact0Sez,0,4],[Fiveartefact2Sez,0,1],[Fiveartefact3Sez,0,1],[Fiveartefact4Sez,0,1]]
-strehaSez5=[Fivestreha0_png,Fivestreha1_png]
+strehaSez5=[Fivestreha0_png,Fivestreha1_png,Fivestreha0_png,Fivestreha1_png,Fivestreha0_png,Fivestreha1_png]
 buildingImageSez5=[Fivebuilding0_png,Fivebuilding1_png,Fivebuilding2_png]
 #lvl5 images
 
@@ -193,8 +197,14 @@ Sixbuilding1_png=pygame.image.load("level6/stavba/stavba1.png")
 Sixbuilding2_png=pygame.image.load("level6/stavba/stavba2.png")
 Sixstreha0_png=pygame.image.load("level6/stavba/streha0.png")
 Sixstreha1_png=pygame.image.load("level6/stavba/streha1.png")
-SixBackground_png=pygame.image.load("level6/background/0.png")
-
+SixBackground0_png=pygame.image.load("level6/background/0.png")
+SixBackground1_png=pygame.image.load("level6/background/1.png")
+SixBackground2_png=pygame.image.load("level6/background/2.png")
+SixBackground3_png=pygame.image.load("level6/background/3.png")
+SixBackground4_png=pygame.image.load("level6/background/4.png")
+SixBackground5_png=pygame.image.load("level6/background/5.png")
+SixBackground6_png=pygame.image.load("level6/background/6.png")
+SixBackground_png=[SixBackground0_png,SixBackground1_png,SixBackground2_png,SixBackground3_png,SixBackground4_png,SixBackground5_png,SixBackground6_png,7]
 Sixartefact0Sez=[Sixartifact0_png]
 Sixartefact1Sez=[Sixartifact1_png]
 Sixartefact2Sez=[Sixartifact2_png]
@@ -202,7 +212,7 @@ Sixartefact3Sez=[Sixartifact3_png]
 Sixartefact4Sez=[Six0artifact4_png,Six1artifact4_png,Six2artifact4_png,Six3artifact4_png,Six4artifact4_png,Six5artifact4_png]
 buildingImageSez6=[Sixbuilding0_png,Sixbuilding1_png,Sixbuilding2_png]
 artifactSez6=[[Sixartefact0Sez,0,1],[Sixartefact1Sez,0,1],[Sixartefact2Sez,0,1],[Sixartefact3Sez,0,1],[Sixartefact4Sez,0,6]]
-strehaSez6=[Sixstreha0_png,Sixstreha1_png]
+strehaSez6=[Sixstreha0_png,Sixstreha1_png,Sixstreha0_png,Sixstreha1_png,Sixstreha0_png,Sixstreha1_png]
 #lvl6 images
 
 sound1=[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 0.0, 3.0, 3.0, 4.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 4.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 2.0, 3.0, 1.0, 2.0, 
@@ -264,10 +274,10 @@ def buildingLoading(buildingHight,buildingType):
             buildingSez.append(building(Player.x+560,buildingY*32,buildingLVL[buildingType]))
             rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
         if(buildingY==buildingHight):
-            buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[0]))
+            buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[buildingType*2]))
             rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
         if(buildingY==buildingHight+5):
-            buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[1]))
+            buildingSez.append(building(Player.x+560,buildingY*32,strehaLVL[buildingType*2+1]))
             rectSez.append(Rect(Player.x+560,buildingY*32,32,32))
 
 music1 = pygame.mixer.Sound("sound/song1MP.mp3")
@@ -328,7 +338,7 @@ def main():
         Player_rect = Rect(Player.x,Player.y,24,15)
         screen1.blit(pygame.transform.scale(screen2,(1920,1080)),(0,0))
         screen2.fill([0,255,255])
-        screen2.blit(Background_png,(0,0))
+        screen2.blit(Background_png[allAnimationFrame%Background_png[-1]],(0,0))
         if(levelState==0):
             screen2.blit(tutorialTxt,(50,45))
         if(artifactFrame<=((len(soundSez)-len(soundSez)%5))):
@@ -424,7 +434,6 @@ def main():
         imageLoad(raketaAnimationFrame,raketa,Player.x,Player.y)
         pygame.display.update()
         fps.tick(60)
-        print(fps.get_fps())
         
 
 def playLevel(level: int):
