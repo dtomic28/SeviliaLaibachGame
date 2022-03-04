@@ -409,6 +409,18 @@ def playLevel(level: int):
     gameStop = False
     main()
 
+def goToLevels():
+    global nextLevel_menu
+    nextLevel_menu.disable()
+    levels()
+
+def nextLevelScreen(currentLevel: int):
+    global nextLevel_menu
+    nextLevel_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
+    nextLevel_menu.add.label("Congradulations you compleated the level", font_size=65)
+    btn1 = nextLevel_menu.add.button('Next level', playLevel,3)
+    btn2 = nextLevel_menu.add.button('Go to menu', goToLevels)
+    nextLevel_menu.mainloop(screen1)
 
 def checkIfLocked(level: int):
     uImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2.png", "./images/menu/3.png", "./images/menu/4.png", "./images/menu/5.png", "./images/menu/6.png"]
@@ -511,7 +523,7 @@ menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
 menu.add.button('Play', levels) 
-menu.add.button('Credits', credits) 
+menu.add.button('Credits', nextLevelScreen,3) 
 menu.add.button('Quit', exitMenu) 
 
 menu.mainloop(screen1) #main loop
