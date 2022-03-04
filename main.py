@@ -8,7 +8,7 @@ fps=pygame.time.Clock()
 allAnimationTimer=0
 allAnimationFrame=0
 
-screen1 = pygame.display.set_mode((1920,1080),NOFRAME)
+screen1 = pygame.display.set_mode((1920,1080),FULLSCREEN)
 screen2 = pygame.Surface((640,360))
 
 tutorialTxt = pygame.image.load("text.png")
@@ -172,10 +172,38 @@ Fiveartefact1Sez=[Fiveartifact1_png]
 Fiveartefact2Sez=[Fiveartifact2_png]
 Fiveartefact3Sez=[Fiveartifact3_png]
 Fiveartefact4Sez=[Fiveartifact0_png]
-artifactSez5=[[Fiveartefact1Sez,0,1],[Fiveartefact0Sez,0,1],[Fiveartefact2Sez,0,1],[Fiveartefact3Sez,0,1],[Fiveartefact4Sez,0,1]]
+artifactSez5=[[Fiveartefact1Sez,0,1],[Fiveartefact0Sez,0,4],[Fiveartefact2Sez,0,1],[Fiveartefact3Sez,0,1],[Fiveartefact4Sez,0,1]]
 strehaSez5=[Fivestreha0_png,Fivestreha1_png]
 buildingImageSez5=[Fivebuilding0_png,Fivebuilding1_png,Fivebuilding2_png]
 #lvl5 images
+
+#lvl6 images
+Sixartifact0_png=pygame.image.load("level6/artifact0.png")
+Sixartifact1_png=pygame.image.load("level6/artifact1.png")
+Sixartifact2_png=pygame.image.load("level6/artifact2.png")
+Sixartifact3_png=pygame.image.load("level6/artifact3.png")
+Six0artifact4_png=pygame.image.load("level6/artifact4/torch0.png")
+Six1artifact4_png=pygame.image.load("level6/artifact4/torch1.png")
+Six2artifact4_png=pygame.image.load("level6/artifact4/torch2.png")
+Six3artifact4_png=pygame.image.load("level6/artifact4/torch3.png")
+Six4artifact4_png=pygame.image.load("level6/artifact4/torch4.png")
+Six5artifact4_png=pygame.image.load("level6/artifact4/torch5.png")
+Sixbuilding0_png=pygame.image.load("level6/stavba/stavba0.png")
+Sixbuilding1_png=pygame.image.load("level6/stavba/stavba1.png")
+Sixbuilding2_png=pygame.image.load("level6/stavba/stavba2.png")
+Sixstreha0_png=pygame.image.load("level6/stavba/streha0.png")
+Sixstreha1_png=pygame.image.load("level6/stavba/streha1.png")
+SixBackground_png=pygame.image.load("level6/background/0.png")
+
+Sixartefact0Sez=[Sixartifact0_png]
+Sixartefact1Sez=[Sixartifact1_png]
+Sixartefact2Sez=[Sixartifact2_png]
+Sixartefact3Sez=[Sixartifact3_png]
+Sixartefact4Sez=[Six0artifact4_png,Six1artifact4_png,Six2artifact4_png,Six3artifact4_png,Six4artifact4_png,Six5artifact4_png]
+buildingImageSez6=[Sixbuilding0_png,Sixbuilding1_png,Sixbuilding2_png]
+artifactSez6=[[Sixartefact0Sez,0,1],[Sixartefact1Sez,0,1],[Sixartefact2Sez,0,1],[Sixartefact3Sez,0,1],[Sixartefact4Sez,0,6]]
+strehaSez6=[Sixstreha0_png,Sixstreha1_png]
+#lvl6 images
 
 sound1=[2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 0.0, 3.0, 3.0, 4.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 4.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 2.0, 3.0, 1.0, 2.0, 
 3.0, 3.0, 1.0, 1.0, 2.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 0.0, 2.0, 2.0, 1.0, 2.0, 3.0, 2.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 2.0, 1.0, 2.0, 3.0, 3.0, 4.0, 3.0, 0.0, 2.0, 2.0, 4.0, 2.0, 3.0, 2.0, 3.0, 2.0, 2.0, 4.0, 4.0, 3.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0]
@@ -247,7 +275,7 @@ pygame.mixer.music.load('sound/song1MP.mp3')
 startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png
     while(gameStop==False):
         allAnimationTimer=(allAnimationTimer+1)%10
         if(allAnimationTimer==9):
@@ -287,6 +315,12 @@ def main():
             buildingLVL=buildingImageSez5
             strehaLVL=strehaSez5
             Background_png=FiveBackground_png
+            soundSez=sound1
+        if(levelState==6):
+            artifactLVL=artifactSez6
+            buildingLVL=buildingImageSez6
+            strehaLVL=strehaSez6
+            Background_png=SixBackground_png
             soundSez=sound1
             
         frame+=1
@@ -390,6 +424,7 @@ def main():
         imageLoad(raketaAnimationFrame,raketa,Player.x,Player.y)
         pygame.display.update()
         fps.tick(60)
+        print(fps.get_fps())
         
 
 def playLevel(level: int):
