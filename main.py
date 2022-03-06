@@ -694,7 +694,7 @@ credits_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
-menu.add.label("Play with Laibach", font_size=100, font_color = (255,255,255))
+menu.add.label("Game with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
 menu.add.button('Play', levels) 
 menu.add.button('Credits', credits)
