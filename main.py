@@ -7,6 +7,7 @@ pygame.display.set_caption("Game with libach")
 fps=pygame.time.Clock()
 allAnimationTimer=0
 allAnimationFrame=0
+score=0
 
 lvlsUnloceked=[]
 readFile=open("save.txt", "r")
@@ -311,6 +312,8 @@ class artifact2:
         self.opacitySetting=opacity
         self.opacity=self.artifactImage[0].set_alpha(self.opacitySetting)
         self.numberOfFrames=numberOfFrames
+        self.rect =Rect(x+200,y,32,32)
+        self.alive=True
 
 class building:
     def __init__(self,x,y,image):
@@ -345,7 +348,7 @@ def buildingLoading(buildingHight,buildingType):
 startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked,score
     while(gameStop==False):
         allAnimationTimer=(allAnimationTimer+1)%10
         if(allAnimationTimer==9):
@@ -437,15 +440,28 @@ def main():
             artifactTimer=(artifactTimer+1)%12
             if(artifactTimer==11):
                 artifactFrame+=1
+        artifactsDead=[]
+        artifactsDeadIndex=0
         for artifactInGame in artifactScreenSez:
+            """
             if(artifactInGame.x<Player.x+120):
                 artifactInGame.opacitySetting-=2
                 artifactInGame.artifactImage[allAnimationFrame%artifactInGame.numberOfFrames].set_alpha(artifactInGame.opacitySetting)
             else:
                 artifactInGame.artifactImage[allAnimationFrame%artifactInGame.numberOfFrames].set_alpha(artifactInGame.opacitySetting)
+                """
             screen2.blit(artifactInGame.artifactImage[allAnimationFrame%artifactInGame.numberOfFrames],(artifactInGame.x-cameraMVX+200,artifactInGame.y))
-            if(artifactInGame.x<Player.x-130):
-                artifactScreenSez.pop(0)
+            if(Player_rect.colliderect(artifactInGame.rect)):
+                score+=1
+                artifactInGame.alive=False
+                artifactsDead.append(artifactsDeadIndex)
+            if(artifactInGame.x<Player.x-330):
+                artifactInGame.alive=False
+                artifactsDead.append(artifactsDeadIndex)
+            artifactsDeadIndex+=1
+        for dead in artifactsDead:
+            artifactScreenSez.pop(dead)
+        print(score)
 
         buildingSpawnTimer=(buildingSpawnTimer+1)%240
         if(buildingSpawnTimer==239):
@@ -493,6 +509,7 @@ def main():
             rectSez=[]
             pygame.mixer.music.stop()
             pygame.mixer.music.play(1)
+            score=0
         raketaAnimationTimer=(raketaAnimationTimer+1)%10
         if(raketaAnimationTimer==9):
             raketaAnimationFrame=(raketaAnimationFrame+1)%4
