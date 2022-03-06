@@ -665,7 +665,6 @@ def levels():
     play_levels.add.button('Back', play_levels.disable)
     play_levels.add.vertical_margin(100)
     play_levels.mainloop(screen1)
-    #test
 
 
 
