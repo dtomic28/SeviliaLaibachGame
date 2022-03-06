@@ -3,6 +3,10 @@ from pygame.locals import *
 clock = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption("Game with libach")
+pygame.font.init()
+
+scoreFont = pygame.font.SysFont('FONT_8BIT', 30)
+
 
 fps=pygame.time.Clock()
 allAnimationTimer=0
@@ -350,6 +354,10 @@ w, h = pygame.display.get_surface().get_size()
 def main():
     global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked,score
     while(gameStop==False):
+        if(levelState==1):
+            textsurface = scoreFont.render('Score: '+str(score), False, (0, 0, 0))
+        else:
+            textsurface = scoreFont.render('Score: '+str(score), False, (255, 255, 255))
         allAnimationTimer=(allAnimationTimer+1)%10
         if(allAnimationTimer==9):
             allAnimationFrame+=1
@@ -461,7 +469,6 @@ def main():
             artifactsDeadIndex+=1
         for dead in artifactsDead:
             artifactScreenSez.pop(dead)
-        print(score)
 
         buildingSpawnTimer=(buildingSpawnTimer+1)%240
         if(buildingSpawnTimer==239):
@@ -530,12 +537,13 @@ def main():
             artifactFrame=0
         else:
             pygame.draw.rect(screen2, [255,0,0], pygame.Rect(0, 0,(artifactFrame/(len(soundSez)-1))*640 , 10))
+        screen2.blit(textsurface,(0,10))
         pygame.display.update()
         fps.tick(60)
         
 
 def playLevel(level: int):
-    global gameStop, levelState,artifactScreenSez,artifactTimer,artifactFrame,buildingSpawnTimer,buildingSez,rectSez, lvlsUnloceked
+    global gameStop, levelState,artifactScreenSez,artifactTimer,artifactFrame,buildingSpawnTimer,buildingSez,rectSez, lvlsUnloceked,score
     if(lvlsUnloceked[level] != '0'):
         levelState = level
         if(levelState==0):
@@ -559,6 +567,7 @@ def playLevel(level: int):
         artifactTimer=0
         artifactFrame=0
         buildingSpawnTimer=0
+        score=0
         buildingSez=[]
         rectSez=[]
         pygame.mixer.music.stop()
