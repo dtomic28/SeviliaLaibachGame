@@ -709,7 +709,7 @@ play_levels.add.label('Level 6', font_size=40)
 play_levels.add.vertical_margin(20)
 
 play_levels.add.vertical_margin(100)  
-play_levels.add.button('Back', play_levels.disable)
+play_levels.add.button('Back', pygame_menu.events.BACK)
 play_levels.add.vertical_margin(100)
 
 
