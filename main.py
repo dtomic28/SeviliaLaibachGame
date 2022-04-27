@@ -352,7 +352,7 @@ def buildingLoading(buildingHight,buildingType):
 startMusicTimer=False
 w, h = pygame.display.get_surface().get_size()
 def main():
-    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked,score
+    global cameraMVX, frame, artifactFrame, artifactTimer,artifactScreenSez,artifactImage,artifactState,w,h,fps,buildingSpawnTimer,buildingSez,buildingImageSez1,rectSez, startMusicTimer,gameStop,artifactSez1,strehaSez1, levelState,buildingLVL,artifactLVL,strehaLVL,raketa,raketaAnimationFrame,raketaAnimationTimer,sound1,buildingImageSez2,artifactSez2,strehaSez2,frameSez,allAnimationTimer,allAnimationFrame,TwoBackground_png,OneBackground_png,artifactSez0,buildingImageSez0,strehaSez0,ZeroBackground_png,tutorialTxt,buildingImageSez3,strehaSez3,artifactSez3,ThreeBackground_png,strehaSez4,buildingImageSez4,FourBackground_png,artifactSez4,artifactSez5,buildingImageSez5,strehaSez5,FiveBackground_png,buildingImageSez6,strehaSez6,artifactSez6,SixBackground_png,lvlsUnloceked,score, play_levels
     while(gameStop==False):
         if(levelState==1):
             textsurface = scoreFont.render('Score: '+str(score), False, (0, 0, 0))
@@ -491,6 +491,8 @@ def main():
                 if (keyPressed.key == K_ESCAPE):
                     pygame.mixer.music.pause()
                     gameStop=True
+                    play_levels.enable()
+                    play_levels.update(pygame.event.get())
                 if(keyPressed.key == K_w):
                     Player.state=True
                 if(keyPressed.key == K_s):
@@ -543,7 +545,7 @@ def main():
         
 
 def playLevel(level: int):
-    global gameStop, levelState,artifactScreenSez,artifactTimer,artifactFrame,buildingSpawnTimer,buildingSez,rectSez, lvlsUnloceked,score
+    global gameStop, levelState,artifactScreenSez,artifactTimer,artifactFrame,buildingSpawnTimer,buildingSez,rectSez, lvlsUnloceked,score, play_levels
     if(lvlsUnloceked[level] != '0'):
         levelState = level
         if(levelState==0):
@@ -573,12 +575,27 @@ def playLevel(level: int):
         pygame.mixer.music.stop()
         pygame.mixer.music.play(1)
         gameStop = False
+        play_levels.disable()
         main()
+    else:
+        lockedMenu()
+
+
+def lockedMenu():
+    lock_menu = pygame_menu.Menu("", 1920, 1080, theme = submenu_theme)
+    lock_menu.add.label("Level is locked", font_size=65, font_color = (255,0,0))
+    lock_menu.add.label("Please complete the previus level to unlock this one", font_size=30)
+    lock_menu.add.vertical_margin(50)
+    btn2 = lock_menu.add.button('GO BACK', lock_menu.disable)
+    lock_menu.mainloop(screen1)
+
+        
 
 def goToLevels():
-    global nextLevel_menu
+    global nextLevel_menu, play_levels, image2
     nextLevel_menu.disable()
-    levels()
+    play_levels.enable()
+    play_levels.update(pygame.event.get())
 
 def nextLevelScreen(currentLevel: int):
     global nextLevel_menu
@@ -591,15 +608,16 @@ def nextLevelScreen(currentLevel: int):
 def checkIfLocked(level: int):
     global lvlsUnloceked
     uImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2.png", "./images/menu/3.png", "./images/menu/4.png", "./images/menu/5.png", "./images/menu/6.png"]
-    lImg = ["./images/menu/0.png", "./images/menu/1.png", "./images/menu/2l.png", "./images/menu/3l.png", "./images/menu/4l.png", "./images/menu/5l.png", "./images/menu/6l.png"]
+    return uImg[level]
+
+"""
+def checkIfLockedText(level: int):
+    global lvlsUnloceked
     if lvlsUnloceked[level] == '1':
-        return uImg[level]
+        return "Level %d" %level
     else:
-        return lImg[level]
-
-
-
-    return lImg[level]
+        return "Level %d - locked" %level 
+"""
 
 def credits():
     creditsMenu = pygame_menu.Menu("", 1920, 1080, theme = credits_theme)
@@ -615,56 +633,9 @@ def exitMenu():
     btn2 = exit_menu.add.button('Cancel', exit_menu.disable)
     exit_menu.mainloop(screen1)
 
-def levels():
-    play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
 
-    image0 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(0))
-    image1 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(1))
-    image2 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(2))
-    image3 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(3))
-    image4 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(4))
-    image5 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(5))
-    image6 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(6))
 
-    btn0 = play_levels.add.button(" ", playLevel,0,background_color=image0).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Tutorial level', font_size=40)
-    play_levels.add.vertical_margin(20)       
-        
-    btn1 = play_levels.add.button(" ", playLevel,1, background_color=image1).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 1', font_size=40)
-    play_levels.add.vertical_margin(20)
 
-    btn2 = play_levels.add.button(" ", playLevel,2, background_color=image2).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 2', font_size=40)
-    play_levels.add.vertical_margin(20)
-
-    btn3 = play_levels.add.button(" ", playLevel,3, background_color=image3).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 3', font_size=40)
-    play_levels.add.vertical_margin(20)
-
-    btn4 = play_levels.add.button(" ", playLevel,4, background_color=image4).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 4', font_size=40)
-    play_levels.add.vertical_margin(20)
-
-    btn5 = play_levels.add.button(" ", playLevel,5, background_color=image5).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 5', font_size=40)
-    play_levels.add.vertical_margin(20)
-
-    btn6 = play_levels.add.button(" ", playLevel,6, background_color=image6).resize(264*1.2, 369*1.2)
-    play_levels.add.vertical_margin(20)
-    play_levels.add.label('Level 6', font_size=40)
-    play_levels.add.vertical_margin(20)
-    
-    play_levels.add.vertical_margin(100)  
-    play_levels.add.button('Back', play_levels.disable)
-    play_levels.add.vertical_margin(100)
-    play_levels.mainloop(screen1)
 
 
 
@@ -692,11 +663,60 @@ credits_theme.widget_font = menu_font
 credits_theme.widget_font_size = 64 
 credits_theme.widget_selection_effect = pygame_menu.widgets.SimpleSelection()
 
+play_levels = pygame_menu.Menu("Levels", 1920, 1080, theme = submenu_theme)
+
+image0 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(0))
+image1 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(1))
+image2 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(2))
+image3 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(3))
+image4 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(4))
+image5 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(5))
+image6 = pygame_menu.baseimage.BaseImage(image_path = checkIfLocked(6))
+
+btn0 = play_levels.add.button(" ", playLevel,0,background_color=image0).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Tutorial level', font_size=40)
+play_levels.add.vertical_margin(20)       
+    
+btn1 = play_levels.add.button(" ", playLevel,1, background_color=image1).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Level 1', font_size=40)
+play_levels.add.vertical_margin(20)
+
+btn2 = play_levels.add.button(" ", playLevel,2, background_color=image2).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label("Level 2", font_size=40)
+play_levels.add.vertical_margin(20)
+
+btn3 = play_levels.add.button(" ", playLevel,3, background_color=image3).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Level 3', font_size=40)
+play_levels.add.vertical_margin(20)
+
+btn4 = play_levels.add.button(" ", playLevel,4, background_color=image4).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Level 4', font_size=40)
+play_levels.add.vertical_margin(20)
+
+btn5 = play_levels.add.button(" ", playLevel,5, background_color=image5).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Level 5', font_size=40)
+play_levels.add.vertical_margin(20)
+
+btn6 = play_levels.add.button(" ", playLevel,6, background_color=image6).resize(264*1.2, 369*1.2)
+play_levels.add.vertical_margin(20)
+play_levels.add.label('Level 6', font_size=40)
+play_levels.add.vertical_margin(20)
+
+play_levels.add.vertical_margin(100)  
+play_levels.add.button('Back', play_levels.disable)
+play_levels.add.vertical_margin(100)
+
 
 menu = pygame_menu.Menu("",1920, 1080, theme = menu_theme)
 menu.add.label("Game with Laibach", font_size=100, font_color = (255,255,255))
 menu.add.vertical_margin(500)
-menu.add.button('Play', levels) 
+menu.add.button('Play', play_levels.enable()) 
 menu.add.button('Credits', credits)
 menu.add.button('Quit', exitMenu) 
 
